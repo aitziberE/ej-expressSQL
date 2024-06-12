@@ -1,4 +1,3 @@
-// Crea endpoint de base de datos 
 const express = require("express")
 const app = express()
 const mysql = require('mysql2')
@@ -13,6 +12,7 @@ const db = mysql.createConnection({
 
 db.connect()
 
+// Crea endpoint de base de datos 
 app.get('/createdb', (req, res) => {
     const sql = 'CREATE DATABASE ej1DB'
    
@@ -27,7 +27,7 @@ app.get('/createdb', (req, res) => {
 // Tabla Products
 app.get('/createTableProducts', (req, res) => {
     const sql =
-      'CREATE TABLE products(id int AUTO_INCREMENT,name VARCHAR(20), price int, category_id int, PRIMARY KEY(id), FOREIGN KEY (category_id) REFERENCES categories(id) ON UPDATE CASCADE ON DELETE CASCADE)'
+      'CREATE TABLE products(id int AUTO_INCREMENT, name VARCHAR(20), price int, category_id int, PRIMARY KEY(id), FOREIGN KEY (category_id) REFERENCES categories(id) ON UPDATE CASCADE ON DELETE CASCADE)'
     db.query(sql, (err, result) => {
       if (err) throw err
       console.log(result)
