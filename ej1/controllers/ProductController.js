@@ -53,24 +53,24 @@ const ProductController = {
     getById(req,res){
         const sql = `SELECT * FROM products WHERE id = ${req.params.id}`
         db.query(sql, (err, result) => {
-        if (err) throw err
-        res.send(result)
+            if (err) throw err
+            res.send(result)
         })
     },
 
     getByName(req,res){
         const sql = `SELECT * FROM products WHERE name = ${req.params.name}`
         db.query(sql, (err, result) => {
-        if (err) throw err
-        res.send(result)
+            if (err) throw err
+            res.send(result)
         })
     },
-    
+
     deleteById(req,res){
         const sql = `DELETE FROM products WHERE id = ${req.params.id}`
         db.query(sql, (err, result) => {
-        if (err) throw err
-        res.send('Product deleted')
+            if (err) throw err
+            res.send('Product deleted')
         })
     }
 }
