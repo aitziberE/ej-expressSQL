@@ -1,16 +1,9 @@
 const express = require("express")
 const app = express()
-const mysql = require('mysql2')
+const db = require('./config/database.js')
 app.use(express.json())
 
-const db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'abcd*1234',
-    database:  'ej1DB'
-})
 
-db.connect()
 
 // Crea un endpoint para crear una categoría y añade 2 categorías nuevas desde el postman
 app.post('/', (req, res) => {

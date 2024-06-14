@@ -1,16 +1,7 @@
 const express = require("express")
 const app = express()
-const mysql = require('mysql2')
+const db = require('./config/database.js')
 app.use(express.json())
-
-const db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'abcd*1234',
-    database:  'ej1DB'
-})
-
-db.connect()
 
 // Crea un endpoint que muestre todos los productos
 app.get('/products', (req, res) => {
