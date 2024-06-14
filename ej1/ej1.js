@@ -1,9 +1,11 @@
 const express = require("express")
 const app = express()
 const db = require('./config/database.js')
+
 app.use(express.json())
 
-
+app.use('/products', require('./routes/products'))
+app.use('/categories', require('./routes/categories'))
 
 // Crea endpoint de base de datos 
 app.get('/createdb', (req, res) => {
@@ -15,26 +17,3 @@ app.get('/createdb', (req, res) => {
       res.send('Database created...')
     })
 })
-
-// Crea las siguientes tablas usando Express y MySQL como hemos visto en clase:
-// Tabla Products
-app.get('/createTableProducts', (req, res) => {
-    const sql =
-      'CREATE TABLE products(id int AUTO_INCREMENT, name VARCHAR(20), price int, category_id int, PRIMARY KEY(id), FOREIGN KEY (category_id) REFERENCES categories(id) ON UPDATE CASCADE ON DELETE CASCADE)'
-    db.query(sql, (err, result) => {
-      if (err) throw err
-      console.log(result)
-      res.send('Products table created...')
-    })
-})
-// Tabla Categories
-app.get('/createTableCategories', (req, res) => {
-    const sql =
-      'CREATE TABLE categories(id int AUTO_INCREMENT,name VARCHAR(20), PRIMARY KEY(id))'
-    db.query(sql, (err, result) => {
-      if (err) throw err
-      console.log(result)
-      res.send('Categories table created...')
-    })
-})
-// *Recuerda que en el caso de una relación muchos a muchos necesitarás una tabla intermedia.
